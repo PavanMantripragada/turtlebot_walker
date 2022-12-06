@@ -1,0 +1,8 @@
+<launch>
+  <arg name="bag_record" default="1"/>
+  <include file="$(find-pkg-share turtlebot3_gazebo)/launch/turtlebot3_world.launch.py"/>
+  <node pkg="turtlebot_walker" exec="walker" name="mywalker"/>
+  <group if="$(var bag_record)">
+    <executable cmd="ros2 bag record -o ../results/all_topics -a" output="screen" />
+  </group>
+</launch>
